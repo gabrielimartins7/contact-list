@@ -1,5 +1,5 @@
 import styled from 'styled-components/native';
-import { MagnifyingGlass, SignOut, Plus } from 'phosphor-react-native';
+import { MagnifyingGlass, SignOut, Plus, X } from 'phosphor-react-native';
 
 import { getStatusBarHeight } from "react-native-iphone-x-helper";
 
@@ -38,6 +38,18 @@ export const SearchIcon = styled(MagnifyingGlass).attrs(({ theme }) => ({
     size: 18,
 }))`
     margin-right: 20px;
+`;
+
+export const SearchCloseIcon = styled(X).attrs(({ theme }) => ({
+    color: theme.colors.text,
+    size: 18,
+}))`
+    margin-right: 20px;
+`;
+
+export const ContentSearch = styled.View`
+    flex-direction: row;
+    align-items: center;
 `;
 
 export const SignIcon = styled(SignOut).attrs(({ theme }) => ({
@@ -81,3 +93,13 @@ export const AddIcon = styled(Plus).attrs(({ theme }) => ({
     color: theme.colors.shape,
     size: 18,
 }))``;
+
+export const SearchText = styled.TextInput`
+    width: 200px;
+    height: 35px;
+    border-radius: 12px;
+    padding: 18px 16px;
+    border: 1px solid ${({ theme }) => theme.colors.input_border};
+    background-color: ${({ theme }) => theme.colors.input};
+    color: ${({ theme }) => theme.colors.text};
+`;

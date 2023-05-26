@@ -11,3 +11,7 @@ export function createContact(contact : NewContactParams) {
 export function deleteContact(contact : Contact) {
     return api.delete(`contacts/${contact.id}`);
 }
+
+export function editContact(contact : Contact) {
+    return api.put(`contacts/${contact.id}`, contact);
+}

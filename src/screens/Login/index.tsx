@@ -9,7 +9,7 @@ export function Login(){
     const navigation = useNavigation<StackNavigationProp<RootParamList>>();
 
     function handleLogin(){
-        navigation.navigate('contact')
+        navigation.navigate('home')
     }
 
     return (

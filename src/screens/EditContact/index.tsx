@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
-import { createContact } from '../../services/contactServices';
+import { StackNavigationProp, StackScreenProps } from '@react-navigation/stack';
+import { editContact } from '../../services/contactServices';
+
+import { Alert } from 'react-native';
 
 import { Input } from '../../components/Input';
 
@@ -13,7 +16,6 @@ import {
     SaveText,
     ContentHeader,
     ContainerInput,
-    CloseContent,
 } from './styles';
 
 interface NewContactForm {
@@ -27,15 +29,18 @@ interface NewContactForm {
     state?: string;
 }
 
-export function NewContact(){
-    const [form, setForm] = useState<NewContactForm>({});
+type ContactProps = StackScreenProps<RootParamList, 'edit'>
+
+export function EditContact({ route }: ContactProps){
+    const { contact } = route.params;
+    const [form, setForm] = useState<NewContactForm>(contact);
     const [formError, setFormError] = useState<NewContactForm>({});
 
-    const navigation = useNavigation();
+    const navigation = useNavigation<StackNavigationProp<RootParamList>>();
 
-    function handleContact(){
+    function handleEditContact(){
         if(validate() && form.name && form.email && form.mobile) {
-            const newContact: NewContactParams = {
+            const payload: Contact = {
                 name: form.name,
                 email: form.email,
                 mobile: form.mobile,
@@ -43,10 +48,13 @@ export function NewContact(){
                 address: form.address,
                 city: form.city,
                 state: form.state,
-                district: form.neighborhood
+                district: form.neighborhood,
+                id: contact.id,
+                photo: ''
             }
-            createContact(newContact).then(response => {
-                navigation.goBack()
+            editContact(payload).then(response => {
+                Alert.alert('Contato Atualizado', 'Seu contato foi atualizado!')
+                navigation.navigate('home')
                 console.log(response.data)
             }).catch(error => console.log(error))
         }
@@ -67,20 +75,14 @@ export function NewContact(){
         return Object.keys(newErrors).length === 0
     }
 
-    function handleClose(){
-        navigation.goBack()
-    }
-
     return (
         <Container>
             <Header>
                 <ContentHeader>
-                    <CloseContent onPress={handleClose}>
-                        <CloseIcon />
-                    </CloseContent>
-                    <Title>Criar contato</Title>
+                    <CloseIcon />
+                    <Title>Editar contato</Title>
                 </ContentHeader>
-                <SaveContent onPress={handleContact}>
+                <SaveContent onPress={handleEditContact}>
                     <SaveText>Salvar</SaveText>
                 </SaveContent>
             </Header>

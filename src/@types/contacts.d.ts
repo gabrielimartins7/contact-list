@@ -2,13 +2,13 @@ type Contact = {
         id: string;
         name: string;
         email: string;
-        photo: string
-        adress: string;
-        district: string;
-        state: string;
-        city: string;
+        photo?: string
+        address?: string;
+        district?: string;
+        state?: string;
+        city?: string;
         mobile: string;
-        phone: string;
+        phone?: string;
 }
 
 type NewContactParams = {

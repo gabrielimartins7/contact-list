@@ -40,6 +40,10 @@ export function SeeContact({ route }: ContactProps){
         deleteContact(contact).then(() => navigation.goBack())
     }
 
+    function handleEditContact(contact: Contact){
+        navigation.navigate('edit', {contact})
+    }
+
     return (
         <Container>
             <Header>
@@ -76,7 +80,7 @@ export function SeeContact({ route }: ContactProps){
                     <Details>Endereço</Details>
                     <LabelDetails>
                         <Label>Endereço</Label>
-                        <Description>{contact.adress}</Description>
+                        <Description>{contact.address}</Description>
                     </LabelDetails>
                     <LabelDetails>
                         <Label>Bairro</Label>
@@ -92,7 +96,7 @@ export function SeeContact({ route }: ContactProps){
                     </LabelState>
                 </DetailsContent>
             </ContentContact>
-                <ButtonEdit>
+                <ButtonEdit onPress={() => handleEditContact(contact)}>
                     <EditIcon/>
                     <EditText>Editar contato</EditText>
                 </ButtonEdit>

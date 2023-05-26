@@ -51,8 +51,6 @@ export const SaveContent = styled.TouchableOpacity`
     margin-right: 20px;
 `;
 
-export const CloseContent = styled.TouchableOpacity``;
-
 export const SaveText = styled.Text`
     color: ${({ theme }) => theme.colors.shape};
     font-size: ${({ theme }) => theme.fontSize.sm};
