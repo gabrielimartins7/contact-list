@@ -24,6 +24,8 @@ import {
     ButtonEdit,
     EditIcon,
     EditText,
+    ContentName,
+    TextName,
  } from './styles';
 
  type ContactProps = StackScreenProps<RootParamList, 'see'>
@@ -56,6 +58,11 @@ export function SeeContact({ route }: ContactProps){
             </Header>
             <ContentContact>
                 <HeaderContact>
+                <ContentName>
+                    <TextName>
+                        {contact.name.split(' ').map(n => n[0]).join('')}
+                    </TextName>
+                </ContentName>
                     <Name>{contact.name}</Name>
                     <SubTitle>{contact.id}</SubTitle>
                 </HeaderContact>

@@ -5,6 +5,7 @@ import { getStatusBarHeight } from "react-native-iphone-x-helper";
 
 export const Container = styled.View`
     flex: 1;
+    background-color: ${({ theme }) => theme.colors.shape};
 `;
 
 export const Header = styled.View`
@@ -132,4 +133,19 @@ export const EditText = styled.Text`
     font-family: ${({ theme }) => theme.fonts.bold};
     color: ${({ theme }) => theme.colors.shape};
     margin-left: 15px;
+`;
+
+export const ContentName = styled.View`
+    width: 64px;
+    height: 64px;
+    border-radius: 32px;
+    background-color: ${({ theme }) => theme.colors.input_border};
+    align-items: center;
+    justify-content: center;
+`;
+
+export const TextName = styled.Text`
+    color: ${({ theme }) => theme.colors.primary};
+    font-size: ${({ theme }) => theme.fontSize.md};
+    font-family: ${({ theme }) => theme.fonts.bold};
 `;
